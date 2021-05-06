@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if page_obj %}
+    <h1>Pick a book and start reading!</h1>
+    {% for book in page_obj %}
+    <section>
+        <h3>Title: {{ book.title }}</h3>
+        <img src="{{ book.image.url }}" style="width:500px;">
+        <p>Given by {{ book.book_owner }}</p>
+        <a href="{% url 'details' book.pk book.title %}"  role="button">Details</a>
+        {% if request.user == book.book_owner %}
+        <a href="{% url 'delete' book.pk book.title %}"  role="button">Delete</a>
+        {% endif %}
+    </section>
+    {% endfor %}
+{% else %}
+    <h1>Sorry, there is no books at the library!</h1>
+{% endif %}
+<div class="pagination">
+     <div class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+     </div>
+    <div class="pages">
+        <a href="?page=1" class="active">&laquo; first</a>
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+        {% endif %}
+        <a href="?page={{ page_obj.number }}">{{ page_obj.number }}</a>
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+        {% endif %}
+        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Here you can change the information about your owned book!</h1>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form }}
+  <input type="submit" role="button" value="Edit">
+</form>
+{% endblock %}

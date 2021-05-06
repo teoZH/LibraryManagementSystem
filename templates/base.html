@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a class="active" href="{% url 'index' %}">Home</a></li>
+    {% if request.user.is_authenticated %}
+        <li><a href="{% url 'create' %}">Offer a book!</a></li>
+        <li><a href="{% url 'catalog' %}">Book Catalog</a></li>
+        <li style="float:right"><a href="{% url 'logoutMe' %}">Logout</a></li>
+        <li style="float:right"><a href="{% url 'pass_change' %}">Password Change</a></li>
+        <li style="float:right"><a href="#">Hello, {{ request.user.username }}!</a></li>
+    {% else %}
+        <li style="float:right"><a href="{% url 'loginMe' %}">Login</a></li>
+        <li style="float:right"><a href="{% url 'register' %}">Register</a></li>
+    {% endif %}
+    </ul>
+</nav>
+<div class="content">
+{% block content %}
+{% endblock %}
+</div>
+<footer>
+    <p>Zhelev's Designs</p>
+</footer>
+<script src="{% static 'script.js' %}"></script>
+</body>
+</html>

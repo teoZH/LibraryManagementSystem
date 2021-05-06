@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if book %}
+    <section class="detail">
+        <h1>Title: {{ book.title }}</h1>
+        <img src="{{ book.image.url }}" style="width:500px;">
+        <p>Description: {{ book.description }}</p>
+        {% if request.user != book.book_owner %}
+        <p>Given by {{ book.book_owner }}</p>
+        <a href="#"  role="button">Borrow</a>
+        {% else %}
+        <a href="{% url 'edit' book.pk book.title %}"  role="button">Edit Info!</a>
+        <a href="{% url 'delete' book.pk book.title %}"  role="button">Delete</a>
+        {% endif %}
+    </section>
+{% endif %}
+{% endblock %}

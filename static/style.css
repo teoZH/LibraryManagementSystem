@@ -1,0 +1,101 @@
+nav {
+   background-color: #33331a;
+   margin: 0;
+   width: 100%;
+}
+
+ul {
+    list-style-type: none;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    float: left;
+}
+
+
+li a {
+    display: block;
+    padding: 14px 16px;
+    text-align : center;
+    color: white;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #4CAF50;
+}
+
+
+.active {
+  background-color: #4CAF50;
+}
+
+
+footer {
+    position: fixed;
+    background-color: #33331a;
+    color: white;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+.content {
+    margin-top: 20px;
+    padding: 20px;
+}
+
+section {
+    margin: auto;
+    margin-bottom: 40px;
+    padding: 10px;
+    width : 50%;
+    border-style: groove;
+    border-width: 5px;
+    border-color: #3ba361;
+    border-radius: 20px;
+}
+
+.pagination {
+    margin: auto;
+    margin-top: 20px;
+    width: 40%;
+}
+
+.pagination .current {
+    margin: auto;
+    width: 45%;
+    text-align: center
+}
+.pagination .pages {
+    margin: auto;
+    width: 70%;
+    text-align: center;
+}
+
+.pagination a {
+    display: inline-block;
+    margin-top: 20px;
+    margin-bottom: 70px;
+    padding: 10px 20px;
+    color: black;
+    text-decoration: none;
+    transition: background-color .3s
+    background-color: white;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #9da3a3;
+    color: white;
+}
+
+
+.pagination a.active {
+    background-color: #4ababa;
+    color: white;
+}
