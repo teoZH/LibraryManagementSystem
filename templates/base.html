@@ -4,6 +4,8 @@
     {% load static %}
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
@@ -22,10 +24,10 @@
     {% endif %}
     </ul>
 </nav>
-<div class="content">
+
 {% block content %}
 {% endblock %}
-</div>
+
 <footer>
     <p>Zhelev's Designs</p>
 </footer>
