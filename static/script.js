@@ -37,5 +37,6 @@ function paginationActive() {
     })
 }
 
+
 window.addEventListener('load', navEvent)
 window.addEventListener('load',paginationActive)

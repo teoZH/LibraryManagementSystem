@@ -11,6 +11,8 @@ from django.views.generic.edit import FormView
 from .mixins import PaginatorMixin
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView
+from django.http import JsonResponse, Http404, HttpResponse
+import datetime
 
 
 def remove_picture(p):
@@ -23,11 +25,42 @@ def remove_picture(p):
     return
 
 
+def serialize(queryset):
+    exact_attrs = ['title', 'description', 'image']
+    serialized = {}
+    for model in queryset:
+        serialized[model.id] = {}
+        for attr in exact_attrs:
+            if attr == 'image':
+                serialized[model.id][attr] = getattr(model.image, 'url')
+            else:
+                serialized[model.id][attr] = getattr(model, attr)
+    return serialized
+
+
 # Create your views here.
 
 
 def index(request):
     return render(request, 'main.html')
+
+
+class APIView(View):
+    model_class = Book
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.method != 'GET':
+            raise Http404('Access forbidden!')
+        return super().dispatch(request, *args, **kwargs)
+
+    def get(self, request, *args, **kwargs):
+        last_month = datetime.datetime.utcnow().month - 1
+        data = self.model_class.objects.filter(created_at__month__gt=f"{last_month}").order_by('-created_at')
+        data = serialize(data)
+        return JsonResponse(data=data)
 
 
 class CatalogView(View, ContextMixin, PaginatorMixin):

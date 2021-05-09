@@ -1,24 +1,21 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block scripts %}
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap" rel="stylesheet">
+    <script type="module" src="{% static 'mainApp/asyncApi.js' %}"></script>
+{% endblock %}
 {% block content %}
-<div class="picture">
-    <img src="{% static 'background.jpg' %}">
-    <div class="main-text">
-        <h1>Hello, this is a library management system!</h1>
-        <h3>Do you like reading books ?</h3>
-        <h3>Do you have spare books in your house?</h3>
-        <h3>Offer your books here, in order to take more to read!</h3>
+    <div class="picture">
+        <img src="{% static 'background.jpg' %}" id='picture-background'>
+        <div class="main-text">
+            <h1>Hello, this is a library management system!</h1>
+            <h3>Do you like reading books ?</h3>
+            <h3>Do you have spare books in your house?</h3>
+            <h3>Offer your books here, in order to take more to read!</h3>
+        </div>
     </div>
-</div>
-<div class="last">
-    <div class="last-3">
-        <h1>content</h1>
+    <div class="last">
+        <h1> LOADING ... </h1>
     </div>
-    <div class="last-3">
-        <h1>content</h1>
-    </div>
-    <div class="last-3">
-        <h1>content</h1>
-    </div>
-</div>
 {% endblock %}
